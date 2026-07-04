@@ -1,25 +1,30 @@
 #include<iostream>
 using namespace std;
 
-void CountOdd(int iNo)
+int CountEven(int iNo)
 {
     int iCnt = 0;
+    int iCount = 0;
 
     for(iCnt = 1 ; iCnt <= iNo ; iCnt++)
     {
-        if(iCnt % 2 == 1)
+        if(iCnt % 2 == 0)
         {
-            cout<<iCnt<<"\t";
+            iCount++;
         }
     }
+
+    return iCount;
 }
 
 int main()
 {
     int iNo = 0;
+    int iRet = 0;
     cout<<"Enter Number : \n";
 
     cin>>iNo;
-    CountOdd(iNo);
+    iRet = CountEven(iNo);
+    cout<<"Count of Even digit are : "<<iRet;
     return 0;
 }

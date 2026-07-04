@@ -1,26 +1,28 @@
 #include<iostream>
 using namespace std;
 
-int CountEven(int Arr[],int isize)
+bool Maximum(int Arr[],int isize,int iNo)
 {
-   int iSum = 0;
-   int iCount = 0;
-   for(int iCnt = 0 ; iCnt < isize ; iCnt++)
+   int iCnt = 0;
+   int iMax = Arr[0];
+
+   for(iCnt = 1 ; iCnt < isize ; iCnt++)
    {
-      if(Arr[iCnt] % 2 == 0) 
+      if(iMax < Arr[iCnt])
       {
-         iCount++;
+         iMax = Arr[iCnt];
       }
    }
 
 
-   return iCount;;
+   return iMax;
 }
 
 
 int main()
 {
    int iSize = 0;
+   int iNo = 0;
    int iRet = 0;
    cout<<"Enter Size : \n";
    cin>>iSize;
@@ -33,7 +35,7 @@ int main()
       cin>>(*(Arr+i));
    }
 
-   iRet = CountEven(Arr,iSize);
-   cout<<"Count Of Even Number in Array: "<<iRet;
+   iRet = Maximum(Arr,iSize,iNo);
+   cout<<"Maximum number in Array is : "<<iRet;
    return 0;
 }

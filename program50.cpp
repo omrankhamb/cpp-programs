@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
 
-int CountEven(int Arr[],int isize)
+int SumEven(int Arr[],int isize)
 {
    int iSum = 0;
    int iCount = 0;
@@ -9,12 +9,12 @@ int CountEven(int Arr[],int isize)
    {
       if(Arr[iCnt] % 2 == 0) 
       {
-         iCount++;
+         iSum = iSum + Arr[iCnt];
       }
    }
 
 
-   return iCount;;
+   return iSum;;
 }
 
 
@@ -33,7 +33,7 @@ int main()
       cin>>(*(Arr+i));
    }
 
-   iRet = CountEven(Arr,iSize);
-   cout<<"Count Of Even Number in Array: "<<iRet;
+   iRet = SumEven(Arr,iSize);
+   cout<<"Sum of Even Number in Array :  "<<iRet;
    return 0;
 }

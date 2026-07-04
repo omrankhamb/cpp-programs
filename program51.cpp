@@ -1,20 +1,20 @@
 #include<iostream>
 using namespace std;
 
-int CountEven(int Arr[],int isize)
+int SumOdd(int Arr[],int isize)
 {
    int iSum = 0;
    int iCount = 0;
    for(int iCnt = 0 ; iCnt < isize ; iCnt++)
    {
-      if(Arr[iCnt] % 2 == 0) 
+      if(Arr[iCnt] % 2 == 1) 
       {
-         iCount++;
+         iSum = iSum + Arr[iCnt];
       }
    }
 
 
-   return iCount;;
+   return iSum;;
 }
 
 
@@ -33,7 +33,7 @@ int main()
       cin>>(*(Arr+i));
    }
 
-   iRet = CountEven(Arr,iSize);
-   cout<<"Count Of Even Number in Array: "<<iRet;
+   iRet = SumOdd(Arr,iSize);
+   cout<<"Sum of ODD Number in Array :  "<<iRet;
    return 0;
 }

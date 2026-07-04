@@ -1,13 +1,13 @@
 #include<iostream>
 using namespace std;
 
-int CountEven(int Arr[],int isize)
+int CountOdd(int Arr[],int isize)
 {
    int iSum = 0;
    int iCount = 0;
    for(int iCnt = 0 ; iCnt < isize ; iCnt++)
    {
-      if(Arr[iCnt] % 2 == 0) 
+      if(Arr[iCnt] % 2 == 1) 
       {
          iCount++;
       }
@@ -33,7 +33,7 @@ int main()
       cin>>(*(Arr+i));
    }
 
-   iRet = CountEven(Arr,iSize);
+   iRet = CountOdd(Arr,iSize);
    cout<<"Count Of Even Number in Array: "<<iRet;
    return 0;
 }

@@ -1,20 +1,20 @@
 #include<iostream>
 using namespace std;
 
-int CountEven(int Arr[],int isize)
+int CountFrequency(int Arr[],int isize,int iNo)
 {
    int iSum = 0;
    int iCount = 0;
    for(int iCnt = 0 ; iCnt < isize ; iCnt++)
    {
-      if(Arr[iCnt] % 2 == 0) 
+      if(Arr[iCnt] == iNo) 
       {
          iCount++;
       }
    }
 
 
-   return iCount;;
+   return iCount;
 }
 
 
@@ -22,6 +22,7 @@ int main()
 {
    int iSize = 0;
    int iRet = 0;
+   int iNo = 0;
    cout<<"Enter Size : \n";
    cin>>iSize;
 
@@ -33,7 +34,11 @@ int main()
       cin>>(*(Arr+i));
    }
 
-   iRet = CountEven(Arr,iSize);
-   cout<<"Count Of Even Number in Array: "<<iRet;
+   cout<<"Enter Number to Count Frequency : ";
+   cin>>iNo;
+
+
+   iRet = CountFrequency(Arr,iSize,iNo);
+   cout<<"Frequency Count of number in array is  :  "<<iRet;
    return 0;
 }

@@ -29,6 +29,11 @@ class Marvellous
          cout<<ref.y<<endl;
 
       }
+
+      ~Marvellous()
+      {
+         cout<<"Inside Destructor\n";
+      }
 };
 
 
@@ -40,6 +45,7 @@ int main()
 
    Marvellous mob3(mobj2);
    
+   cout<<"End of main\n";
 
    return 0;
 }

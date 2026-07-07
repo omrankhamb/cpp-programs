@@ -5,22 +5,23 @@ using namespace std;
     iRow = 4
     iCol = 4
 
-    1       1       1       1
-    2       2       2       2
-    3       3       3       3
-    4       4       4       4 
-
+    A   B   C   D
+    A   B   C   D
+    A   B   C   D
+    A   B   C   D
+    
 */
 
 void display(int iRow,int iCol)
 {
     int i = 0 , j = 0;
+    char ch = '\0';
     
     for(int i = 1 ; i <= iRow ; i++)
     {
-        for(int j = 1 ; j <= iCol ; j++)
+        for(int j = 1,ch = 'A'; j <= iCol ; j++,ch++)
         {
-            cout<<i<<"     ";
+            cout<<(char)ch<<"     ";
         }
         cout<<"\n";
     }

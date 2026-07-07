@@ -5,10 +5,11 @@ using namespace std;
     iRow = 4
     iCol = 4
 
-    1       1       1       1
-    2       2       2       2
-    3       3       3       3
-    4       4       4       4 
+    #       &       #       &
+    #       &       #       &
+    #       &       #       &
+    #       &       #       &
+
 
 */
 
@@ -20,7 +21,14 @@ void display(int iRow,int iCol)
     {
         for(int j = 1 ; j <= iCol ; j++)
         {
-            cout<<i<<"     ";
+           if(j % 2 == 0)
+           {
+            cout<<"&    ";
+           }
+           else
+           {
+            cout<<"#    ";
+           }
         }
         cout<<"\n";
     }

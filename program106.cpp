@@ -65,11 +65,54 @@ char *StrCatX(char *str,char *str2)  //StrCatX(char *str1,char *str2)
     return strcat;
 }
 
+bool StrCmpX(char *str1,char *str2) //StrCmpX(char *str1 ,char *str2)
+{
+    int iLength = StrLenX(str1);
+    int iLength2 = StrLenX(str2);
 
+    if(iLength != iLength2)
+    {
+        return false;
+    }
+
+    int i = 0 ;
+
+    while (str1[i] != '\0')
+    {
+        if(str1[i] != str2[i])
+        {
+            return false;
+        }
+        i++;
+    }
+
+    return true;
+    
+}
+
+bool StrCharX(char *str,char ch)    // StrCharX(char *str,char ch)
+{
+    int i = 0;
+    bool flag = false;
+    while (str[i] != '\0')
+    {
+        if(str[i] == ch)
+        {
+            flag = true;
+            break;
+        }
+        i++;
+    }
+    
+    return flag;
+    
+}
 
 int main()
 {
     int iRet = 0;
+    bool bRet = false;
+    char ch = '\0';
     char Arr[20];
     char Brr[20];
     char *help = NULL;
@@ -77,11 +120,21 @@ int main()
     cout<<"Enter String  : \n";
     IO_string(Arr);
 
-    cout<<"Enter 2nd String : \n";
-    IO_string(Brr);
+    cout<<"Enter Character To Find : \n";
+    cin>>ch;
 
-    help = StrCatX(Arr,Brr);
-    cout<<help;
+    bRet =  StrCharX(Arr,ch);
+    if(bRet)
+    {
+        cout<<"Character Present In string\n";
+    }
+    else
+    {
+        cout<<"Character Is NOT Present in String\n";
+    }
+
+
+    
 
     return 0;
 }

@@ -9,8 +9,5 @@ int main()
     scanf("%[^'\n]s",Arr);
     printf("%s",Arr);
 
-    strc
-
-
     return 0;
 }

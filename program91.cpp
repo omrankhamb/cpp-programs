@@ -1,24 +1,11 @@
-#include<iostream>
+#include <iostream>
+#include <vector>
 using namespace std;
 
-int main()
-{
-    int *arr = new int[10];
-//  int *arr = (int*)malloc(sizeof(int)*10);
-
-    for(int i = 0 ; i < 10 ; i++)
-    {
-        cin>>arr[i];
-    }
-
-    for(int i = 0 ; i < 10 ; i++)
-    {
-        cout<<arr[i]<<"\n";
-
-    }
-
-    delete []arr;
-
-    cout<<"End of main\n";
+int main() {
+    vector<int> v = {1, 2, 3};
+    cout << "Accessing element at index 10..." << endl;
+    cout << v.at(10);  // This will throw std::out_of_range
+    cout << "This line will never be executed." << endl;
     return 0;
 }

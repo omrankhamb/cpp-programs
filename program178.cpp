@@ -17,8 +17,6 @@ bool LinearSearch(int Arr[],int iSize,int iNo1)
     }
 
     return bFlag;
-
-
 }
 
 int main()

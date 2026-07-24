@@ -181,6 +181,23 @@ int BST :: CountLeafNode(PNODE temp)
     return leafnode;
 }
 
+int BST :: CountParentNode(PNODE temp)
+{
+    static int parentnode = 0;
+
+    if(temp != NULL)
+    {
+        if(temp->rchild != NULL || temp->lchild != NULL)
+        {
+            parentnode++;
+        }
+
+        CountParentNode(temp->rchild);
+        CountParentNode(temp->lchild);
+    }
+
+    return parentnode;
+}
 
 
 int main()
@@ -216,6 +233,10 @@ int main()
 
     iRet = obj.CountLeafNode(obj.first);
     cout<<"Number of element are : "<<iRet<<endl;
+
+    iRet = obj.CountParentNode(obj.first);
+    cout<<"Number of element are : "<<iRet;
+
     
     return 0;
 }

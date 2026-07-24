@@ -22,7 +22,7 @@ node<T>::node(T data)
 }
 
 template <class T>
-class SinglyCL
+class DoublyCL
 {
 public:
     node<T> *first;
@@ -30,7 +30,7 @@ public:
     int iCnt = 0;
 
 public:
-    SinglyCL();
+    DoublyCL();
     void Display();
     int Count();
 
@@ -44,7 +44,7 @@ public:
 };
 
 template <class T>
-SinglyCL<T>::SinglyCL()
+DoublyCL<T>::DoublyCL()
 {
     this->first = NULL;
     this->last = NULL;
@@ -52,7 +52,7 @@ SinglyCL<T>::SinglyCL()
 }
 
 template <class T>
-void SinglyCL<T>::Display()
+void DoublyCL<T>::Display()
 {
     node<T> *temp = NULL;
 
@@ -68,13 +68,13 @@ void SinglyCL<T>::Display()
 }
 
 template <class T>
-int SinglyCL<T>::Count()
+int DoublyCL<T>::Count()
 {
     return this->iCnt;
 }
 
 template <class T>
-void SinglyCL<T>::InsertFirst(T iNo)
+void DoublyCL<T>::InsertFirst(T iNo)
 {
     node<T> *newn = NULL;
 
@@ -96,7 +96,7 @@ void SinglyCL<T>::InsertFirst(T iNo)
 }
 
 template <class T>
-void SinglyCL<T>::InsertLast(T iNo)
+void DoublyCL<T>::InsertLast(T iNo)
 {
     node<T> *newn = NULL;
     node<T> *temp = NULL;
@@ -121,7 +121,7 @@ void SinglyCL<T>::InsertLast(T iNo)
 }
 
 template <class T>
-void SinglyCL<T>::InsertAtPos(T iNo, int iPos)
+void DoublyCL<T>::InsertAtPos(T iNo, int iPos)
 {
     node<T> *newn = NULL;
     node<T> *temp = NULL;
@@ -162,7 +162,7 @@ void SinglyCL<T>::InsertAtPos(T iNo, int iPos)
 }
 
 template <class T>
-void SinglyCL<T>::DeleteFirst()
+void DoublyCL<T>::DeleteFirst()
 {
     if (this->first == NULL && this->last == NULL)
     {
@@ -185,7 +185,7 @@ void SinglyCL<T>::DeleteFirst()
 }
 
 template <class T>
-void SinglyCL<T>::DeleteLast()
+void DoublyCL<T>::DeleteLast()
 {
     if (this->first == NULL && this->last == NULL)
     {
@@ -208,7 +208,7 @@ void SinglyCL<T>::DeleteLast()
 }
 
 template <class T>
-void SinglyCL<T>::DeleteAtPos(int iPos)
+void DoublyCL<T>::DeleteAtPos(int iPos)
 {
     node<T> *temp = NULL;
     int i = 0;
@@ -245,7 +245,7 @@ void SinglyCL<T>::DeleteAtPos(int iPos)
 
 int main()
 {
-    SinglyCL<int> sobj;
+    DoublyCL<int> sobj;
     int iRet = 0;
 
     sobj.InsertFirst(51);

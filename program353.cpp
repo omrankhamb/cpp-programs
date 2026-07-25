@@ -135,6 +135,7 @@ int main()
     Tree obj;
 
     obj.Insert(Arr,8);
+    obj.LevelOrder();
 
     obj.Inorder();
     return 0;

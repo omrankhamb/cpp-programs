@@ -1,24 +1,22 @@
-#include<iostream>
+#include <iostream>
+#include <queue>
 using namespace std;
 
 class node
 {
-    public :
-        int data;
-        node *rchild;
-        node *lchild;
+public:
+    int data;
+    node *rchild;
+    node *lchild;
 
-        node(int);
-
+    node(int);
 };
 
 typedef struct node NODE;
-typedef struct node * PNODE;
-typedef struct node ** PPNODE;
+typedef struct node *PNODE;
+typedef struct node **PPNODE;
 
-
-
-node :: node(int iNo)
+node ::node(int iNo)
 {
     this->data = iNo;
     this->lchild = NULL;
@@ -27,45 +25,80 @@ node :: node(int iNo)
 
 class BST
 {
-    public :
-        PNODE first;
-        int iCnt;
-        
-    public :
-        BST();
-        int Count();
+public:
+    PNODE first;
+    int iCnt;
 
-        void Inorder(PNODE);
-        void Preorder(PNODE);
-        void PostOrder(PNODE);
+public:
+    BST();
+    int Count();
 
-        void Insert(int iNo);
-        bool Search(PNODE,int);
-        int CountLeafNode(PNODE);
-        int CountParentNode(PNODE);      
+    void Inorder(PNODE);
+    void Preorder(PNODE);
+    void PostOrder(PNODE);
 
+    void Insert(int iNo);
+    bool Search(PNODE, int);
+    int CountLeafNode(PNODE);
+    int CountParentNode(PNODE);
+
+    void LevelOrder()
+    {
+        node *temp = this->first;
+        queue<node *> obj1;
+        vector<int> ans;
+
+        obj1.push(temp);
+
+        while (!obj1.empty())
+        {
+            queue<node *> obj2;
+            while (!obj1.empty())
+            {
+                node *x = obj1.front();
+                cout << x->data << "  ";
+                if (x->lchild != NULL)
+                {
+                    obj2.push(x->lchild);
+                }
+                if (x->rchild != NULL)
+                {
+                    obj2.push(x->rchild);
+                }
+                obj1.pop();
+            }
+
+            cout << "\n";
+
+            while (!obj2.empty())
+            {
+                node *x = obj2.front();
+                obj1.push(x);
+                obj2.pop();
+            }
+        }
+    }
 };
 
-
-BST :: BST ()
+BST ::BST()
 {
     this->first = NULL;
     this->iCnt = 0;
 }
 
-int BST :: Count()
+int BST ::Count()
 {
     return this->iCnt;
 }
 
-void BST :: Insert(int iNo)
+void BST ::Insert(int iNo)
 {
     PNODE newn = NULL;
     PNODE temp = NULL;
 
     newn = new node(iNo);
 
-    if(this->first == NULL)
+    if (this->first == NULL)
     {
         this->first = newn;
     }
@@ -73,89 +106,88 @@ void BST :: Insert(int iNo)
     {
         temp = this->first;
 
-        while(1)
+        while (1)
         {
-            if(iNo  < temp->data)
+            if (iNo < temp->data)
             {
-                if(temp->lchild == NULL)
+                if (temp->lchild == NULL)
                 {
                     temp->lchild = newn;
-                    break;      // Important
+                    break; // Important
                 }
                 temp = temp->lchild;
             }
-            else if(iNo > temp->data)
+            else if (iNo > temp->data)
             {
-                if(temp->rchild == NULL)
+                if (temp->rchild == NULL)
                 {
                     temp->rchild = newn;
-                    break;      // Important
+                    break; // Important
                 }
                 temp = temp->rchild;
             }
-            else if(temp->data == iNo)
+            else if (temp->data == iNo)
             {
-                cout<<"Node is present\n";
+                cout << "Node is present\n";
                 return;
             }
-
         }
     }
 
     this->iCnt++;
 }
 
-void BST :: Inorder(PNODE temp)
+void BST ::Inorder(PNODE temp)
 {
-    if(temp == NULL)
+    if (temp == NULL)
     {
-        return ;
+        return;
     }
 
     Inorder(temp->lchild);
-    cout<<temp->data<<"  ";
+    cout << temp->data << "  ";
     Inorder(temp->rchild);
 }
 
-void BST :: Preorder(PNODE temp)
+void BST ::Preorder(PNODE temp)
 {
-    if(temp == NULL)
+    if (temp == NULL)
     {
-        return ;
+        return;
     }
-    cout<<temp->data<<"  ";
+    cout << temp->data << "  ";
     Inorder(temp->lchild);
     Inorder(temp->rchild);
 }
 
-void BST :: PostOrder(PNODE temp)
+void BST ::PostOrder(PNODE temp)
 {
-    if(temp == NULL)
+    if (temp == NULL)
     {
-        return ;
+        return;
     }
-    
+
     Inorder(temp->lchild);
     Inorder(temp->rchild);
-    cout<<temp->data<<"  ";
+    cout << temp->data << "  ";
 }
 
-bool BST :: Search(PNODE temp,int iNo)
+bool BST ::Search(PNODE temp, int iNo)
 {
     bool bFlag = false;
 
-    while(temp != NULL)
+    while (temp != NULL)
     {
-        if(iNo == temp->data)
+        if (iNo == temp->data)
         {
             bFlag = true;
             break;
         }
-        else if(iNo < temp->data)
+        else if (iNo < temp->data)
         {
             temp = temp->lchild;
         }
-        else if(iNo > temp->data)
+        else if (iNo > temp->data)
         {
             temp = temp->rchild;
         }
@@ -164,16 +196,16 @@ bool BST :: Search(PNODE temp,int iNo)
     return bFlag;
 }
 
-int BST :: CountLeafNode(PNODE temp)
+int BST ::CountLeafNode(PNODE temp)
 {
     static int leafnode = 0;
-    if(temp != NULL)
+    if (temp != NULL)
     {
-        if(temp->lchild == NULL && temp->rchild == NULL)
+        if (temp->lchild == NULL && temp->rchild == NULL)
         {
             leafnode++;
         }
-        
+
         CountLeafNode(temp->lchild);
         CountLeafNode(temp->rchild);
     }
@@ -181,13 +213,13 @@ int BST :: CountLeafNode(PNODE temp)
     return leafnode;
 }
 
-int BST :: CountParentNode(PNODE temp)
+int BST ::CountParentNode(PNODE temp)
 {
     static int parentnode = 0;
 
-    if(temp != NULL)
+    if (temp != NULL)
     {
-        if(temp->rchild != NULL || temp->lchild != NULL)
+        if (temp->rchild != NULL || temp->lchild != NULL)
         {
             parentnode++;
         }
@@ -199,13 +231,12 @@ int BST :: CountParentNode(PNODE temp)
     return parentnode;
 }
 
-
 int main()
 {
     BST obj;
-    int iRet  = 0;
+    int iRet = 0;
     bool bRet = false;
-    
+
     obj.Insert(11);
     obj.Insert(7);
     obj.Insert(5);
@@ -219,24 +250,26 @@ int main()
     obj.Insert(15);
 
     iRet = obj.Count();
-    obj.Inorder(obj.first);
-    cout<<"\nNumber of node are : "<<iRet<<endl;
+    cout << endl;
 
-    if(obj.Search(obj.first,15))
+    obj.LevelOrder();
+    obj.Inorder(obj.first);
+    cout << "\nNumber of node are : " << iRet << endl;
+
+    if (obj.Search(obj.first, 15))
     {
-        cout<<"Element is Preseent\n";
+        cout << "Element is Preseent\n";
     }
     else
     {
-        cout<<"Element is not Present\n";
+        cout << "Element is not Present\n";
     }
 
     iRet = obj.CountLeafNode(obj.first);
-    cout<<"Number of element are : "<<iRet<<endl;
+    cout << "Number of element are : " << iRet << endl;
 
     iRet = obj.CountParentNode(obj.first);
-    cout<<"Number of element are : "<<iRet;
+    cout << "Number of element are : " << iRet;
 
-    
     return 0;
 }

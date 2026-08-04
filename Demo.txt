@@ -1,0 +1,5 @@
+Hi My Name is Omprasad Rajesaheb Rankhamb
+I am New in PUNE
+I am learning file IO
+Next line is the end if file
+Previous was the end of the before file

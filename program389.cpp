@@ -27,6 +27,7 @@ int main()
 
     Student s1(y);
 
+    cout<<s1.p[0];
     s1.Display();
 
     return 0;

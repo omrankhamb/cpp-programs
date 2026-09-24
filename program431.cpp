@@ -105,9 +105,15 @@ int main()
 {
     // creting Factory Pattern
 
-    Vehicle *obj = vehicleFactory :: newVehicle(CAR , "omprasad");
+    Vehicle *obj = vehicleFactory :: newVehicle(CAR , "MH2341");
+    Vehicle *obj2 = vehicleFactory :: newVehicle(BIKE ,"MH2731");
+    Vehicle *obj3 = vehicleFactory :: newVehicle (TRUCK , "MH2639");
 
     obj->display();
+    obj2->display();
+    obj3->display();
+
+
     
     
     return 0;

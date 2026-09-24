@@ -20,6 +20,14 @@ class Demo
 
 int main()
 {
-    ame as (struct Demo *)(malloc(sizeof(struct Demo)));
+    // Not able to create the object
+    // static object creation
+    // Memory allocated at stack
+    Demo obj;
+
+    Demo *obj = new Demo();
+    // Dynamic Object Creation
+    // Memory allocated at heap
+
     return 0;
 }

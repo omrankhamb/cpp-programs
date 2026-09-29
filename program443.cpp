@@ -1,14 +1,14 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
 class Student
 {
-    public : 
-        int iNo;
-        Student()
-        {
-            cout<<"object is created\n";
-        }
+public:
+    int iNo;
+    Student()
+    {
+        cout << "object is created\n";
+    }
 };
 
 int main()
@@ -19,14 +19,11 @@ int main()
 
     ptr = &i;
 
-    printf("%d\n" , *(int*)ptr);
-
+    printf("%d\n", *(int *)ptr);
 
     Student obj;
     obj.iNo = 10;
     void *pobj = &obj;
 
-    printf("%d ",((Student*)pobj)->iNo);
-
-
+    printf("%d ", ((Student *)pobj)->iNo);
 }

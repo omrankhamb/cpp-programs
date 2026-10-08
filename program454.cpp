@@ -49,6 +49,50 @@ class MaxHeap
             }
             cout<<endl;
         }
+
+
+        void Heapify(int index)
+        {
+            int largest = index;
+            int left = 2*index + 1;
+            int right = 3 * index + 2;
+
+            if(left < this->size && arr[left] > largest)
+            {
+                largest = left;
+            }
+
+            if(right < this->size && arr[right] > arr[largest])
+            {
+                largest = right;
+            }
+
+            if(largest != index)
+            {
+                swap(arr[largest] , arr[index]);
+                Heapify(largest);
+            }
+        }
+
+        void Delete()
+        {
+            if(this->size == 0)
+            {
+                cout<<"Heap is underflow\n";
+                return;
+            }
+
+            cout<<"The element is Deleted : "<<arr[0]<<endl;
+            arr[0] = arr[this->size - 1];
+            this->size--;
+
+            if(this->size == 0)
+            {
+                return;
+            }
+
+            Heapify(0);
+        }
 };      
 
 int main()
@@ -58,13 +102,15 @@ int main()
     obj.insert(4);
     obj.insert(14);
     obj.insert(11);
+    obj.Delete();
     obj.print();
     obj.insert(114);
     obj.insert(24);
     obj.insert(1);
     obj.print();
-
     obj.insert(21);
+
+    obj.print();
     
     
     return 0;

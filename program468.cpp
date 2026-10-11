@@ -23,6 +23,7 @@ class Tree
 {
 public:
     node *root;
+    vector<vector<int>> allPaths;
 
     Tree()
     {
@@ -426,8 +427,249 @@ public:
         return maxSum;
     }
 
-    
+    public : 
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    //
+    //  Qustion  : Print All the path of the binary tree
+    //  Solution : We can print using the recursion we print all path of tree
+    //             before left call push the element 
+    //             After right call pop the element
+    //             Insert in the actaul vector of path if arr->left == NULL && arr->right == NULL  
+    //             The curren element data is not inserting so at taht time ones insert and ont pop
+    //             should be exectued or should be done                  
+    //////////////////////////////////////////////////////////////////////////////////////////////
+        void path(node * temp , vector<int> &arr)
+        {
+            if(temp == NULL)
+            {
 
+               
+                return;
+            }
+
+            if(temp->left == NULL && temp->right== NULL)
+            {
+                arr.push_back(temp->data);
+                allPaths.push_back(arr);
+                arr.pop_back();
+            }
+
+            arr.push_back(temp->data);
+            path(temp->left , arr);   
+            path(temp->right , arr);
+            arr.pop_back();
+        }
+
+
+        void printAllPath()
+        {
+
+            int n = allPaths.size();
+
+            for(int i = 0 ; i < n ; i++)
+            {
+                for(int j = 0 ; j < allPaths[i].size() ; j++)
+                {
+                    cout<<allPaths[i][j]<<" ";
+                }
+                cout<<endl;
+            }
+
+        }
+
+
+    ////////////////////////////////////////////////////////////////////////
+    //
+    //  Qustion  : Sum all Elments in the binary tree
+    //  Solution : 1]  We can calculate using the recusrion 
+    //             2] We can solve the same problem using the levelOrer Traversal
+    //             
+    ////////////////////////////////////////////////////////////////////////
+
+    int toalSumTree(node * temp)
+    {
+        if(temp == NULL)
+        {
+            return 0;
+        }
+
+        return  temp->data + toalSumTree(temp->left) + toalSumTree(temp->right);
+    }
+
+    int toalSumTreeNonRecursive()
+    {
+        queue<node*> obj;
+        int sum = 0;
+
+        obj.push(this->root);
+
+        while(!obj.empty())
+        {
+            node *temp = obj.front();
+            sum += temp->data;
+
+            if(temp->left != NULL)
+            {
+                obj.push(temp->left);
+            }
+
+            if(temp->right != NULL)
+            {
+                obj.push(temp->right);
+            }
+
+            obj.pop();
+        }
+
+        return sum;
+    }
+
+    ////////////////////////////////////////////////////////////////////////
+    //
+    //  Qustion  : Convertin the mirror Image
+    //  Solution : At the recusrion just change the child node with parent node
+    //
+    //             
+    ////////////////////////////////////////////////////////////////////////
+
+    void levelByLevel() {
+    if (!this->root) return;
+
+    queue<node*> q;
+    q.push(this->root);
+
+    while (!q.empty()) {
+        int size = q.size();  // number of nodes at this level
+        for (int i = 0; i < size; i++) {
+            node* temp = q.front();
+            q.pop();
+
+            cout << temp->data << " ";
+
+            if (temp->left) q.push(temp->left);
+            if (temp->right) q.push(temp->right);
+        }
+        cout << "\n";  // end of level
+    }
+}
+
+    void mirrorImage(node *temp)  
+    {
+        if(temp == NULL)
+        {
+            return ;
+        }
+        node *obj = temp->left;
+        temp->left = temp->right;
+        temp->right = obj;
+
+        mirrorImage(temp->left);
+        mirrorImage(temp->right);
+
+    }
+
+    ////////////////////////////////////////////////////////////////////////
+    //
+    //  Qustion  : Find the list common Ancestor
+    //  Solution : 1] if both is at either left or either riht of tree
+    //                  if Either left go deepr and vice versa for right
+    //             2] check 
+    ////////////////////////////////////////////////////////////////////////
+
+
+    node * LCA(node *temp , node * p , node * q)
+    {
+        node *left = NULL ,*right = NULL;
+        if(temp == NULL)
+        {
+            return NULL;
+        }
+
+        // if One of themm is find then return
+        if(temp == p || temp == q)
+        {
+            return temp;
+        }
+
+        left = LCA(temp->left , p , q);
+        right = LCA(temp->right , p , q);
+
+        //
+        if(left && right)
+        {
+            return root;
+        }
+        else
+        {
+            return left ? left : right;
+        }
+
+    }
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+/*
+
+    Question : Build the tree from Inorder , Preorder and PostOrder Treaversl
+    Build the tree from Inorder and from Preorder
+
+*/
+/////////////////////////////////////////////////////////////////////////////////////
+
+    public :    
+
+    int searchInorder(vector<int> Inorder , int inorderStart , int inorderEnd , int data)
+    {
+        for(int i= inorderStart ;  i <= inorderEnd ; i++)
+        {
+            if(Inorder[i] == data)
+            {
+                return  i;
+            }
+        }
+        return -1;
+
+    }
+
+    node *BuildTree(vector<int> Inorder , vector<int> Preorder , int inorderStart , int inorderEnd)
+    {
+        static int preOrderidx = 0;
+        node *newn = NULL;
+        if(inorderStart > inorderEnd)
+        {
+            return NULL;
+        }
+
+
+        newn = new node(Preorder[preOrderidx]);
+        preOrderidx++;
+
+        if(inorderStart == inorderEnd)
+        {
+            return newn;
+        }
+
+        int inorderIdx = searchInorder(Inorder  , inorderStart , inorderEnd , newn->data);
+
+        newn->left = BuildTree(Inorder , Preorder , inorderStart , inorderIdx - 1);
+        newn->right = BuildTree(Inorder , Preorder , inorderIdx + 1 , inorderEnd);
+
+                        
+        return newn;
+    }
+
+    public : 
+        static void display(node *temp) 
+        {
+            if(temp == NULL)
+            {
+                return;
+            }
+
+            cout<<temp->data<<" ";
+            Tree :: display(temp->left);
+            Tree :: display(temp->right);
+        }
 
 };
 
@@ -443,13 +685,26 @@ int main()
     obj.insert(7);
     obj.insert(10);
     obj.insert(13);
+    obj.insert(14);
+    obj.insert(11);
 
     
+    
+    obj.levelByLevel();
+    obj.mirrorImage(obj.root);
+    obj.levelByLevel();
 
-    obj.leveLorder();
-    int ans  = obj.maximumSum();
-    cout<<"The maximum answer of the sum is : "<<ans<<endl;
+    vector<int> Inorder  = {40, 20, 50, 10, 30};
+    vector<int> Preorder = {10, 20, 40, 50, 30};
+
+    node *root = NULL;
+
+    root = obj.BuildTree(Inorder , Preorder , 0 , Inorder.size()-1);
+
+    Tree :: display(root);
+
    
 
     return 0;
 }
+

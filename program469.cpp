@@ -299,7 +299,7 @@ public:
     //          In the same time we push the right data first and then the left data
     //          Similarly push at the end of the stack one by one
 
-    //          When we start the data get one by one then print from the stack by onr
+    //          When we start the data get one by one then print from the stack by one
     //
     ////////////////////////////////////////////////////////////////////////////////////////
 
@@ -442,8 +442,6 @@ public:
         {
             if(temp == NULL)
             {
-
-               
                 return;
             }
 

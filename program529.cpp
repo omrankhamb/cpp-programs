@@ -7,15 +7,20 @@ void selectFunction(T type)
 {
     cout<<type<<endl;
     int x = 10;
-    type(x);
+    type();
 }
 
-bool name(int x)
+bool name()
 {
-    cout<<"the name funcion is called"<<" " <<x <<endl;
+    cout<<"the name funcion is called"<<endl;
+}
+
+bool newname()
+{
+    cout<<"new name is called"<<endl;
 }
 
 int  main()
 {
-    selectFunction(name);
+    selectFunction(newname);
 }
